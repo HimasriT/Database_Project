@@ -1,0 +1,62 @@
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+--
+-- Host: localhost    Database: wonder_library
+-- ------------------------------------------------------
+-- Server version	8.0.29
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `borrowing`
+--
+
+DROP TABLE IF EXISTS `borrowing`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `borrowing` (
+  `PID` varchar(10) NOT NULL,
+  `Recep_ID` varchar(10) NOT NULL,
+  `BookID` varchar(10) NOT NULL,
+  `Payment_ID` varchar(10) NOT NULL,
+  `Date_of_issue` date NOT NULL,
+  `Due_date` date NOT NULL,
+  PRIMARY KEY (`PID`,`Recep_ID`,`BookID`,`Payment_ID`),
+  KEY `BookID` (`BookID`),
+  KEY `Payment_ID` (`Payment_ID`),
+  KEY `Recep_ID` (`Recep_ID`),
+  CONSTRAINT `borrowing_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `person` (`PID`) ON DELETE CASCADE,
+  CONSTRAINT `borrowing_ibfk_2` FOREIGN KEY (`BookID`) REFERENCES `book` (`Book_ID`) ON DELETE CASCADE,
+  CONSTRAINT `borrowing_ibfk_3` FOREIGN KEY (`Payment_ID`) REFERENCES `payment` (`Payment_ID`) ON DELETE CASCADE,
+  CONSTRAINT `borrowing_ibfk_4` FOREIGN KEY (`Recep_ID`) REFERENCES `receptionist` (`Recep_ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `borrowing`
+--
+
+LOCK TABLES `borrowing` WRITE;
+/*!40000 ALTER TABLE `borrowing` DISABLE KEYS */;
+INSERT INTO `borrowing` VALUES ('P001','P009','B001','1111','2022-01-11','2022-03-11'),('P001','P009','B001','1131','2022-04-11','2022-03-11'),('P001','P009','B002','1125','2022-04-11','2022-03-11'),('P001','P009','B003','1126','2022-04-12','2022-03-11'),('P001','P009','B006','1127','2022-04-13','2022-03-11'),('P001','P009','B009','1128','2022-04-14','2022-03-11'),('P001','P009','B010','1129','2022-04-15','2022-03-11'),('P001','P009','B011','1130','2022-04-16','2022-03-11'),('P001','P144','B008','1122','2021-11-11','2022-12-11'),('P002','P010','B002','1112','2021-12-09','2022-01-11'),('P003','P009','B003','1113','2022-01-10','2022-02-09'),('P004','P009','B005','1114','2022-03-11','2022-04-11'),('P005','P010','B004','1115','2021-04-10','2021-06-10'),('P006','P010','B007','1116','2022-04-01','2022-05-01'),('P007','P010','B006','1117','2021-01-09','2021-02-11'),('P008','P144','B011','1118','2021-02-23','2021-04-23'),('P009','P009','B010','1120','2021-08-16','2021-09-16'),('P010','P009','B009','1121','2022-02-02','2022-04-02'),('P144','P009','B004','1111','2022-04-11','2022-06-11');
+/*!40000 ALTER TABLE `borrowing` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-05-06  9:16:33
